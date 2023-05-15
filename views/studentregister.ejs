@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/1ab94d0eba.js" crossorigin="anonymous"></script>
+    <title>Register Form</title>   
+    <link rel="stylesheet" href="/css/registerstyle.css">
+    
+</head>
+<body style="background: linear-gradient(45deg, #8e2de2, #4a00e0);">
+    <main class="container">
+        <h2 style="text-align: center;">Student Registration</h2>
+        <% if (errorMessage) { %>
+            <p style="color: red"><%= errorMessage %></p>
+          <% } %>
+        <form action="/studentregister" method="post"  enctype="multipart/form-data">
+            <div class="input-field">
+                <label style="font-weight: bolder;">Basic Details</label>
+            </div>
+            <div class="input-field">
+                <input type="text" name="name" id="name"
+                    placeholder="Enter Your Full name" minlength="1" required>
+                <div class="underline"></div>
+            </div>
+            <div class="input-field">
+                <input type="text" name="username" id="username"
+                    placeholder="Enter Your Roll number" minlength="1" min="1" required>
+                <div class="underline"></div>
+            </div class="input-field">
+                        
+            <div class="input-field">
+                <input type="password" name="password" id="password"
+                    placeholder="Enter Your Password" minlength="8" required>
+                <div class="underline"></div>
+            </div>
+
+            <div class="input-field">
+                <input type="number" name="phone" id="phone"
+                    placeholder="Enter Your Phone number" minlength="10" min="6" required>
+                <div class="underline"></div>
+            </div>
+            <div class="input-field">
+                <input type="email" name="email" id="email"
+                    placeholder="Enter Your email" minlength="1" required>
+                <div class="underline"></div>
+            </div>
+            <div class="input-field">
+                <input type="text" name="address" id="address"
+                    placeholder="Enter Your address" minlength="1" required>
+                <div class="underline"></div>
+            </div>
+
+            <div class="input-field">
+                <input type="text" name="language" id="language"
+                    placeholder="Enter Languages Known" minlength="1" required>
+                <div class="underline"></div>
+            </div>
+
+            <div class="input-field">
+                <label for="gender">Select your gender</label><br>
+                <select id="gender" name="gender" required>
+                <option value="" disabled selected>-- Select your gender --</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="input-field">
+                <label>Date Of Birth</label>
+                <input type="date" name="dob" id="dob" max="2005-01-01" required>
+                <div class="underline"></div>
+            </div>
+           
+            <div class="input-field">
+                <label for="course">Select your course</label><br>
+                <select id="course" name="course" required>
+                <option value="" disabled selected>-- Select your course --</option>
+                <option value="B.Tech">B.Tech</option>
+                <option value="M.tech">M.Tech</option>
+                </select>
+            </div>
+            
+            <div class="input-field">
+                <label for="branch">Select a department</label><br>
+                <select id="branch" name="branch" required>
+                <option value="" disabled selected>-- Select your branch --</option>
+                <option value="CSE">CSE</option>
+                <option value="ECE">ECE</option>
+                <option value="EEE">EEE</option>
+                <option value="MECH">MECH</option>
+                <option value="CIVIL">CIVIL</option>
+                <option value="PET">PE</option>
+                <option value="CHEM">CHE</option>
+                </select>
+
+            </div>
+            
+            <div class="input-field">
+            <label style="font-weight: bolder;">Academic Details</label>
+            </div>
+            <div class="input-field">
+                <input type="text" name="school" id="school"
+                    placeholder="Enter Your school name" minlength="1"  required>
+                <div class="underline"></div>
+            </div>
+              <div class="input-field">
+                <input type="number" name="gpa10" id="gpa10"
+                    placeholder="Enter Your 10th GPA" minlength="1" step="0.01" required>
+                <div class="underline"></div>
+            </div>
+            <div class="input-field">
+                <input type="text" name="intertype" id="inter"
+                    placeholder="Choose Inter or Diploma" minlength="1"  required>
+                <div class="underline"></div>
+            </div>
+            <div class="input-field">
+                <input type="text" name="inter" id="inter"
+                    placeholder="Enter Your Intermediate/Diploma college name" minlength="1"  required>
+                <div class="underline"></div>
+            </div>
+            <div class="input-field">
+                <input type="number" name="gpa12" id="gpa12"
+                    placeholder="Enter Your 12th GPA" minlength="1" step="0.01" required>
+                <div class="underline"></div>
+            </div>
+            <!--<div class="input-field">
+                <label>UG Semester Wise GPA:</label></div>
+            <div class="input-field">
+                <input type="number" name="ug1" id="ug1"
+                    placeholder="Enter 1st semester GPA " minlength="1" step="0.01">
+                <div class="underline"></div>
+            </div>
+
+            <div class="input-field">
+                <input type="number" name="ug2" id="ug2"
+                    placeholder="Enter 2nd semester GPA " minlength="1" step="0.01">
+                <div class="underline"></div>
+            </div>
+            <div class="input-field">
+                <input type="number" name="ug3" id="ug3"
+                    placeholder="Enter 3rd semester GPA " minlength="1" step="0.01">
+                <div class="underline"></div>
+            </div>
+            <div class="input-field">
+                <input type="number" name="ug4" id="ug4"
+                    placeholder="Enter 4th semester GPA " minlength="1" step="0.01">
+                <div class="underline"></div>
+            </div>
+            <div class="input-field">
+                <input type="number" name="ug5" id="ug5"
+                    placeholder="Enter 5th semester GPA " minlength="1" step="0.01">
+                <div class="underline"></div>
+            </div>
+            <div class="input-field">
+                <input type="number" name="ug6" id="ug6"
+                    placeholder="Enter 6th semester GPA " minlength="1" step="0.01">
+                <div class="underline"></div>
+            </div>
+            <div class="input-field">
+                <input type="number" name="ug7" id="ug7"
+                    placeholder="Enter 7th semester GPA " minlength="1" step="0.01">
+                <div class="underline"></div>
+            </div>
+            <div class="input-field">
+                <input type="number" name="ug8" id="ug8"
+                    placeholder="Enter 8th semester GPA " minlength="1" step="0.01">
+                <div class="underline"></div>
+            </div>-->
+            <div class="input-field">
+                <input type="text" name="btech" id="btech" value="UNIVERSITY COLLEGE OF ENGINEERING KAKINADA(A)" minlength="1"  disabled required>
+                <div class="underline"></div>
+            </div>
+            <div class="input-field">
+                <input type="number" name="cgpa" id="cgpa"
+                    placeholder="Enter Btech CGPA" minlength="1" step="0.01">
+                <div class="underline"></div>
+            </div>
+            
+            <div class="input-field">
+                <input type="number" name="backlogs" id="backlogs"
+                    placeholder="Enter no of backlogs" minlength="1">
+                <div class="underline"></div>
+            </div>
+
+            <div class="input-field">
+                <input type="number" name="noofcompaniesplaced" id="noofcompaniesplaced"
+                    placeholder="Enter no of companies placed" minlength="1" required>
+                <div class="underline"></div>
+            </div>
+
+            <div class="input-field">
+                <input type="text" name="namesofcompanies" id="namesofcompanies"
+                    placeholder="Enter names of placed companies(NA if not placed) " minlength="1"  required>
+                <div class="underline"></div>
+            </div>
+
+            <br>
+            <div >
+                <label style="font-size:18px;">Backlog History</label>&emsp;
+                <input type="radio" name="backlogHistory"  value="yes">
+                <label for="backlogHistory" style="font-size:18px;color:grey;">Yes</label>
+                <input type="radio" name="backlogHistory"  value="no" checked>
+                <label for="backlogHistory" style="font-size:18px;color:grey;">No</label>
+            </div>
+          <label style="font-weight: bolder;margin-top: 20px;">Personal Details</label>
+          <span id="profile" class="form-text" style="font-size: medium;color:grey;">(Upload files with your rollnumber)</span>
+          <div class="input-field">
+            <label>Upload Picture</label><br>
+            <input type="file" name="profile" id="profile" accept="jpg/png/jpeg" aria-labelledby="profile" required>            
+            <div class="underline"></div>
+            
+
+        </div>
+          <div class="input-field">
+                <label>Upload Resume</label><br>
+                <input type="file" name="resume" id="resume" accept="application/pdf" required>
+                <div class="underline"></div>
+            </div>
+            <div class="input-field">
+                <label>Upload Offer Letter</label><br>
+                <input type="file" name="offerletter" id="offerletter" accept="application/pdf" >
+                <div class="underline"></div>
+            </div>
+            <div class="input-field">
+                <label>Certifications</label><br>
+                <input type="text" name="certificates" id="certificates"
+                    placeholder="Enter Your certifications(seperate by ',')" minlength="1"  required>
+                <div class="underline"></div>
+            </div>
+            <div class="input-field">
+                <label>Skills</label><br>
+                <input type="text" name="skills" id="skills"
+                    placeholder="Enter Your skills(seperate by ',')" minlength="1"  required>
+                <div class="underline"></div>
+            </div>
+            <div class="input-field">
+                <label>Projects</label><br>
+                <input type="text" name="project" id="project"
+                    placeholder="Enter Your Projects(seperate by ',')" minlength="1"  required>
+                <div class="underline"></div>
+            </div>
+            <div class="input-field">
+                <label>Achievements</label><br>
+                <textarea id="achievements" name="achievements" placeholder="Enter your achievements(seperate by ',')" rows="5" cols="90"></textarea>
+            </div>
+            <input type="submit" value="Register">
+        </form>       
+    </main>
+</body>
+</html>

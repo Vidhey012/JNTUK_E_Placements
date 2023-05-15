@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+  <meta charset="UTF-8">
+  <title>view queries</title>
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css'><link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  <link rel="stylesheet" href="/css/thisstyle.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script> 
+  <style type="text/css">
+     h2{
+        font-weight: 600;  
+    }
+    #student-table,.filter-options{
+      margin:1rem;
+    }
+    table{
+      width:100%;      
+    }
+    @media screen and (max-width:1100px) and (min-width:500px) {
+        table{
+          width:750px;
+        }
+        .filter-options{
+          display:inline-block;
+          width:700px;
+          height:50px;
+          margin-left: 10%;
+          margin-top: 5%;
+        }
+        #filter-btn,#download-btn {
+          margin-top: 5%;
+         
+        }
+        #filter-btn{
+          margin-left: 100px;
+          margin-right: 100px;
+        }
+        .abc{
+      width:400%;
+      height: 20%;
+    }
+      }
+    /* .filter-options {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .filter-options select {
+        margin-right: 10px;
+    } */
+    .filter-options {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 5%;
+      margin-bottom: 0;
+    }
+
+    .filter-options label {
+      font-size: 15px;
+      /* font-weight: bold; */
+      color: #333;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-right: 10px;
+    }
+
+    .filter-options select,
+    .filter-options input[type="text"] {
+      padding: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+
+    .filter-options select {
+      min-width: 120px;
+    }
+
+    .filter-options input[type="text"] {
+      width: 80px;
+    }
+    
+    .nav-link,.navbar-brand{
+          color: white;
+        }
+    #filter-btn,
+    #download-btn {
+    cursor: pointer;
+    width: 200px;
+    padding: 10px 10px;
+    border-radius: 12px;
+    display: inline-block;
+    color: white;
+    background: linear-gradient(45deg, #8e2de2, #4a00e0);
+    
+  }
+  #filter-btn{
+    margin-left:350px; 
+    margin-right: 100px;
+  }
+  #download-btn{
+    margin-left: 100px;
+  }
+
+    #filter-btn:hover,
+    #download-btn:hover {
+      transform: scale(1.1);
+    }
+    @media screen and (max-width:499px) {
+      table{
+        width:100%;
+      }
+      .filter-options {
+        display: inline-block;
+        
+      }
+      .filter-options label {
+      font-size: small;
+      letter-spacing: 0px;
+      margin-right: 0px;
+      margin-left: 5px;
+    }
+     #filter-btn,#download-btn{
+      width:170px
+     }
+      #filter-btn{
+        margin-left: 200px;
+        margin-right: 20px;
+      }
+      .filter-options select,
+    .filter-options input[type="text"] {
+      padding: 2px;
+      border: 1px solid #ccc;
+      font-size: 12px;
+      min-width: 50px;
+    }
+    table td {
+  padding: 0.5rem;
+  width:100%;
+    } 
+    .abc{
+      width:1000%;
+      height: 20%;
+    }
+    
+  }
+      
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+   <script>
+     var app = angular.module('myApp', []);
+     app.controller('myCtrl', function($scope, $http) {
+       $http.get('/pcquerydisplay')
+         .then(function(response) {
+           $scope.users = response.data;
+         });
+     });
+   </script>
+      <script>
+        function myFunction()
+        {
+          document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });
+        }
+    </script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top" style="background: linear-gradient(45deg, #8e2de2, #4a00e0);">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/pcdisplayquery"><img src="../css/Jntuk-logo.png" width="60px" height="50px">UCEK Training and Placement Cell</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse " id="navbarTogglerDemo02">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page"  style="color: white;" href="/pcdisplayquery">View Queries</a>
+          </li>
+          <!--<li class="nav-item">
+            <a class="nav-link" href="/pcverify">Verify Students</a>
+          </li>          
+          <li class="nav-item">
+            <a class="nav-link" href="/pcaddstudent">Add Students</a>
+          </li>-->
+          <li class="nav-item">
+            <a class="nav-link" href="/pcreport">View Reports</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/filterquery"> Filter Students</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/" onclick="myFunction();">Logout</a>
+          </li>         
+        </ul>       
+      </div>
+    </div>
+  </nav>
+  <br>
+  <div class="filter-options">
+    <label for="branch">Branch:</label>
+    <select id="branch">
+      <option value="null">All</option>
+      <option value="CSE">CSE</option>
+      <option value="ECE">ECE</option>
+      <option value="MECH">MECH</option>
+      <option value="EEE">EEE</option>
+      <option value="CIVIL">CIVIL</option>
+      <option value="PE">PE</option>
+      <option value="CHE">CHE</option>
+    </select>
+
+    <label for="gender">Gender:</label>
+    <select id="gender">
+      <option value="null">All</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+    </select>
+
+    <label for="course">Course:</label>
+    <select id="course">
+      <option value="null">All</option>
+      <option value="B.Tech">B.Tech</option>
+      <option value="M.Tech">M.Tech</option>
+    </select>
+    
+    <label for="gpa10">10thGPA:</label>
+    <input type="text" name="gpa10" id="gpa10">
+    <label for="Inter/Diploma">Inter/Diploma:</label>
+    <select id="intertype">
+      <option value="null">All</option>
+      <option value="Inter">Inter</option>
+      <option value="Diploma">Diploma</option>
+    </select>
+    <label for="gpa12">Inter/Diploma GPA:</label>
+    <input type="text" name="gpa12" id="gpa12">
+    <label for="cgpa">CGPA:</label>
+    <input type="text" name="cgpa" id="cgpa">
+</div>
+<div style="display: flex;">
+    <button id="filter-btn" onclick="myfun();"  onmouseover="this.style.transform = 'scale(1.1)'" onmouseout="this.style.transform = 'scale(1)'">Filter</button>
+    <button id="download-btn" onclick="download();"  onmouseover="this.style.transform = 'scale(1.1)'" onmouseout="this.style.transform = 'scale(1)'">Download</button>  
+</div>
+<table id="student-table">
+  <thead>
+    <tr>
+      <th class="abc">Name</th>
+      <th>RollNumber</th>
+      <th class="abc">Email</th>
+      <th>Branch</th>
+      <th>Course</th>
+      <th>10th CGPA</th>
+      <th>12th/Diploma CGPA</th>
+      <th>CGPA</th>
+    </tr>
+  </thead>
+  <tbody id="demo">
+  </tbody>
+  <p id="norecords" style="font-size: 50px; text-align: center;"></p>
+</table>
+<script>
+    var temp;
+    function myfun(){
+    
+    var cgpa=document.getElementById("cgpa").value;
+    var gender=document.getElementById("gender").value;
+    var course=document.getElementById("course").value;
+    var branch=document.getElementById("branch").value;
+    var gpa10=document.getElementById("gpa10").value;
+    var intertype=document.getElementById("intertype").value;
+    var gpa12=document.getElementById("gpa12").value;
+    if(cgpa==""){
+      cgpa="0";
+    }
+    if(gpa10==""){
+      gpa10="0";
+    }
+    if(gpa12==""){
+      gpa12="0";
+    }
+  
+    console.log(cgpa,gender,course,branch,gpa10,gpa12);
+            fetch("/filter/"+ branch + "/" +gender + "/" + course + "/" + gpa10 + "/" + intertype + "/" + gpa12 + "/" + cgpa +"/").then(function (data) {
+                data.json().then(function (temp1) {
+                    console.log(temp1);
+                    temp=temp1;
+                    let placeholder = document.querySelector("#demo");
+                    let text = ""
+                    if(temp1.length==0){
+                      console.log("empty");
+                      document.getElementById("norecords").innerHTML = "NO RECORDS TO DISPLAY";
+                    }
+                    for (let i = 0; i < temp1.length; i++) {
+                       
+                            text += "<tr>";
+                            text = text + "<td>" + temp1[i].name + "</td>";
+                            text = text + "<td>" + "      " + temp1[i].username + "</td>";
+                            text = text + "<td>" + temp1[i].email + "</td>";
+                            text = text + "<td>" + temp1[i].branch + "</td>";
+                            text = text + "<td>" + temp1[i].course + "</td>";
+                            text = text + "<td>" + temp1[i].gpa10 + "</td>";
+                            text = text + "<td>" + temp1[i].gpa12 + "</td>";
+                            text = text + "<td>" + temp1[i].cgpa + "</td>";
+
+                            text += "</tr>"
+                    }
+                    placeholder.innerHTML = text;
+   });
+});
+    }
+
+    function download() {
+      if (temp && temp.length) {
+        const headers = ["Name", "Gender", "Course", "Email", "Phone", "10th GPA", "12th GPA", "CGPA"];
+        const dataToDownload = [headers].concat(temp.map(({ name, gender, course, email, phone, gpa10, gpa12, cgpa }) => ([name, gender, course, email, phone, gpa10, gpa12, cgpa])));
+
+        const csvContent = "data:text/csv;charset=utf-8," + dataToDownload.map(e => e.join(",")).join("\n");
+
+        const encodedUri = encodeURI(csvContent);
+        const link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", "student_data_with_headers.csv");
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      } else {
+        console.log("No data to download");
+      }
+    }
+
+
+
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js" integrity="sha512-5JQ1fZO6U5ZQ1RHgNifCnA11SIVJHngy/NO9y4/RS4Y4tw4l1D0xHJz1wZjLxx3zC0jcJ5ys5MNzwghyU/+2Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+  <meta charset="UTF-8">
+  <title>view documents</title>
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css'><link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  <link rel="stylesheet" href="/css/thisstyle.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <style>
+        .container{
+            width:900px;
+        }
+        .nav-link,.navbar-brand{
+          color: white;
+        }
+        h2{
+          font-weight: 600;
+        }
+        table{
+          
+          margin-top: 10%;
+          caption-side: top;
+          width:1000px;
+        }
+        th,td{
+          text-align: center;
+          width:20px;
+        }
+        .abc{
+          width:500%;
+          height:20%
+        }
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script>
+    var app = angular.module('myApp', []);  
+    app.controller('myCtrl', function($scope, $http) {
+      $http.get('/tpovd')
+        .then(function(response) {
+          $scope.users = response.data;
+        });
+    });
+  </script>
+  <script>
+    var resume =users
+  </script>
+   <script>
+    function myFunction()
+    {
+      document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });
+    }
+</script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top" style="background: linear-gradient(45deg, #8e2de2, #4a00e0);">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/tpodisplayquery"><img src="../css/Jntuk-logo.png" width="60px" height="50px">UCEK Training and Placement Cell</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse " id="navbarTogglerDemo02">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page"  style="color: white;" href="/tpodisplayquery">view Queries</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"  style="font-size: 1rem;"> Student            
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/tpoaddselected">Add selected students</a></li>
+              <li><a class="dropdown-item" href="/tpoaddnotification">Notify Students</a></li>
+              <li><a class="dropdown-item" href="/tpodocuments">view student docs</a></li>              
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/tporesumedownload">Resume </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/tpofilter"> Filter</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/tpoaddcompany">Add Company</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/tpodisplaycompany"> Company details</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/tpoaddpc"> Add PC</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/"onclick="myFunction();"> Logout</a>
+          </li>              
+        </ul>       
+      </div>
+    </div>
+  </nav>
+  <table >
+    <caption style="text-align: center;padding-bottom: 2%;"><h2>Student Documents</h2></caption>
+    <thead>
+      <tr>
+        <th>Roll Number</th>
+        <th>Name</th>
+        <th>Resume</th>
+        <th>Offer Letter</th>
+      </tr>
+    </thead>
+    <tbody ng-controller="myCtrl">        
+            <tr ng-repeat="user in users">              
+              <td>{{user.username}}</td>
+              <td>{{user.name}}</td>
+              <td><a href="../uploads/{{user.resume}}">View Resume</a></td>
+              <td class="abc">
+                <div ng-repeat="i in user.offerletter" >
+                  <a href="../uploads/{{i}}">{{i}}</a>
+                </div>
+              </td>
+            </tr>   
+    </tbody>
+  </table>
+</body>
+</body>
+</html>

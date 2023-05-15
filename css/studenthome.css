@@ -1,0 +1,324 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+
+
+body {
+    background:white;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    min-width: 100vw;
+   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 160%;
+}
+
+main.container {
+    background: white;
+    padding: 2rem;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+
+main h2 {
+    font-weight: 600;
+    margin-bottom: 2rem;
+    position: relative;
+    margin-right: 45px;
+    
+}
+
+.img1 img{
+    width: 130px; height: 100px;
+}
+
+.img2 img{
+    width: 150px; height: 150px;
+}
+main h2::before {
+    content: '';
+    position: absolute;
+    height: 4px;
+    width: 25px;
+    bottom: 3px;
+    left: 0;
+    border-radius: 8px;
+     /*background: linear-gradient(45deg, #8e2de2, #4a00e0);*/
+}
+.heading{
+    padding-bottom: 25px;
+    text-align: center;
+} 
+.main2 a img{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    
+}
+.para{
+    font-size: large;
+
+}
+.main2 h5{
+    padding-top: 25px;
+}
+.main2{
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    width:400px;
+    padding-right: 60px;
+    padding-top: 2%;
+    padding-left: 5%;
+}
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-field {
+    position: relative;
+}
+
+form .input-field:first-child {
+    margin-bottom: 1.5rem;
+}
+
+.input-field .underline::before {
+    content: '';
+    position: absolute;
+    height: 1px;
+    width: 100%;
+    bottom: -5px;
+    left: 0;
+    background: rgba(0, 0, 0, 0.2);
+}
+table {
+    margin: 2rem auto; /* center the table */
+    margin-top: 0%;
+    border: 1px solid black;
+    border-collapse: collapse;
+    border-spacing: 1rem;
+    font-size: 60%;
+    background-color: khaki;
+  }
+  thead {
+    background-color: white;
+  }
+  tbody,tr {
+    background-color: white;
+  }
+  tbody tr:nth-child(odd) {
+    background-color: white;
+  }
+  th {
+    border: 1px solid black;
+    background-color: goldenrod;
+    padding: 1rem;
+  }
+  td {
+    border: 1px solid black;
+    padding: 1rem;
+    text-align: center;
+  }
+  td img{
+    width:65%;
+  }
+  p{
+    text-align: center;
+  }
+.input-field .underline::after {
+    content: '';
+    position: absolute;
+    height: 1px;
+    width: 100%;
+    bottom: -5px;
+    left: 0;
+    background: linear-gradient(45deg, #8e2de2, #4a00e0);
+    transform: scaleX(0);
+    transition: all .3s ease-in-out;
+    transform-origin: left;
+}
+
+.input-field input:focus ~ .underline::after {
+    transform: scaleX(1);
+}
+
+.input-field input {
+    outline: none;
+    font-size: 0.9rem;
+    color: rgba(0, 0, 0, 0.7);
+    width: 100%;
+}
+
+.input-field input::placeholder {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+form input[type="submit"] {
+    margin-top: 2rem;
+    padding: 0.4rem;
+    width: 100%;
+    background: linear-gradient(to left, #4776E6, #8e54e9);
+    cursor: pointer;
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 300;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+form input[type="submit"]:hover {
+    letter-spacing: 0.5px;
+    background: linear-gradient(to right, #4776E6, #8e54e9);
+}
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+}
+
+.footer span {
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+.footer .social-field {
+    padding: 0.4rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    width: 100%;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+.footer .social-field a i {
+    margin: 0 0.5rem;
+    width: 15px;
+}
+
+.footer .social-field a {
+    text-decoration: none;
+    color: white;
+}
+
+.footer .social-field.twitter {
+    background: linear-gradient(to right, #56a7f2, #468aca);
+}
+
+.footer .social-field.facebook {
+    background: linear-gradient(to right, #1e3c72, #2a5298);
+}
+.contact{
+    display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px;
+  }
+
+
+  @media screen and (max-width:1250px) and (min-width:994px){
+    main h2{
+        font-weight: 350px;
+        padding-left: 15%;
+        padding-right: 15%;
+    }
+    .main2 a img{
+        width:200px;
+    }
+    .main2 {
+        width: 280px;
+        height: 320px;
+        padding-right: 0%;
+         padding-top: 4%;
+         align-items: center;
+     }
+  }
+
+  @media screen and (max-width:993px) and (min-width:770px) {
+    main h2{
+        font-weight: 350px;
+        padding-left: 15%;
+        padding-right: 15%;
+    }
+    .main2{
+        margin-left: 19%;
+    }
+
+  }
+
+  @media screen and (max-width:767px) and (min-width:601px){
+    main h2{
+        font-weight: 200px;
+        padding-left: 15%;
+        padding-right: 15%;
+    }
+    .main2{
+        margin-left: 18%;
+    }
+    .img1 img{
+        width:100px;
+    }
+    .img2 img{
+        width:130px
+    }
+  }
+  @media screen and (max-width:600px) and (min-width:451px){
+    .img1 img{
+        width:80px;
+        height:80px
+    }
+    .img2 img{
+        width:70px
+    }
+    main h2{
+        font-size: larger;
+        padding-left: 4%;
+        
+    }
+    .main2{
+        margin-left: 14%;
+    }
+  }
+
+  @media screen and (max-width:450px) {
+    main h2{
+        font-size: large;
+        margin-left: 5%;
+    }
+    .heading{
+        padding-bottom: 0px;
+    }
+    .img1 img{
+        width:40px;
+        height:40px;
+        margin-left: 3%;
+    }
+    .img2 img{
+        width:50px;
+        height:50px;
+        margin-right: 3%;
+        margin-top: 6%;
+    }
+    .main2{
+        margin-left: 3%;
+        font-size: medium;
+    }
+    .main2 a img {
+        width: 200px;
+        height:180px
+    }
+    table {
+        font-size:x-small;
+        width:350px;
+      }
+    .para{
+        font-size: small;
+    }
+  }

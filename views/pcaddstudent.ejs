@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Add New Student</title>
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css'>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  <link rel="stylesheet" href="/css/registerstyle.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>  
+  <style type="text/css">
+    .container{
+        margin-top: 15%;
+        width:900px;
+    }
+    .input-field {
+        margin-top:20px;
+    }
+    .input-field input{
+        margin-top: 2px ;
+    }
+    form .input-field:first-child {
+    margin-bottom: 0rem;
+    }
+    .nav-link,.navbar-brand{
+          color: white;
+        }
+    select{
+    border: 1px solid lightgray;
+   min-height: 5vh;
+   border-radius: 5px;
+   outline: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    }
+  
+  </style>
+   <script>
+    function myFunction()
+    {
+      document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });
+    }
+</script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top" style="background: linear-gradient(45deg, #8e2de2, #4a00e0);">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/pcdisplayquery"><img src="../css/Jntuk-logo.png" width="60px" height="50px">UCEK Training and Placement Cell</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse " id="navbarTogglerDemo02">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page"  style="color: white;" href="/pcdisplayquery">View Queries</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/pcverify">Verify Students</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/pcreport">View Reports</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/pcaddstudent">Add Students</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/filterquery"> Filter Students</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/" onclick="myFunction();">Logout</a>
+              </li>         
+            </ul>       
+          </div>
+        </div>
+      </nav>
+
+  <main class="container" >
+        <h2 style="text-align: center;">Add New Student</h2>
+        <% if (errorMessage) { %>
+            <p style="color: red"><%= errorMessage %></p>
+          <% } %>
+          <% if (message) { %>
+            <p style="color: green"><%= message %></p>
+          <% } %>
+        <form action="/pcaddstudent" method="post" enctype="multipart/form-data">
+            <div class="input-field">
+            <label style="font-weight: bolder;">Basic Details:</label>
+            </div>
+            <div class="input-field">
+                <input type="text" name="name" id="name"
+                    placeholder="Enter  Full name" minlength="1" required>
+                <div class="underline"></div>
+            </div>
+            <div class="input-field">
+                <input type="text" name="username" id="username"
+                    placeholder="Enter  Roll number" minlength="1" min="1" required>
+                <div class="underline"></div>
+            </div>
+            
+            <div class="input-field">
+                <input type="password" name="password" id="password"
+                    placeholder="Enter  Password" minlength="8" required>
+                <div class="underline"></div>
+            </div>
+
+            <div class="input-field">
+                <input type="number" name="phone" id="phone"
+                    placeholder="Enter Your Phone number" minlength="10" min="6" required>
+                <div class="underline"></div>
+            </div>
+            <div class="input-field">
+                <input type="email" name="email" id="email"
+                    placeholder="Enter  Email" minlength="1" required>
+                <div class="underline"></div>
+            </div>
+            <div class="input-field">
+                <label>Date Of Birth:</label>
+                <input type="date" name="dob" id="dob" max="2005-01-01" required>
+                <div class="underline"></div>
+            </div>
+            
+            <div class="input-field">
+             <label for="branch">Select a department:</label><br>
+                <select id="branch" name="branch" required>
+                <option value="" disabled selected>-- Select your branch --</option>
+                <option value="CSE">Computer Science and Engineering (CSE)</option>
+                <option value="ECE">Electronics and Communication Engineering (ECE)</option>
+                <option value="EEE">Electrical and Electronics Engineering (EEE)</option>
+                <option value="MECH">Mechanical Engineering (MECH)</option>
+                <option value="CIVIL">Civil Engineering (CIVIL)</option>
+                <option value="PET">Petroleum Engineering (PET)</option>
+                <option value="CHEM">Petrochemical Engineering (CHEM)</option>
+                </select>
+            </div>            
+            <div class="input-field">
+            <label style="font-weight: bolder;">Academic Details:</label>
+            </div>
+              <div class="input-field">
+                <input type="number" name="gpa10" id="gpa10"
+                    placeholder="Enter  10th GPA" minlength="1" min="1" required>
+                <div class="underline"></div>
+            </div>
+
+            <div class="input-field">
+                <input type="number" name="gpa12" id="gpa12"
+                    placeholder="Enter  12th GPA" minlength="1" min="1" required>
+                <div class="underline"></div>
+            </div>
+            <div class="input-field">
+                <label>UG Semester Wise GPA:</label></div>
+            <div class="input-field">
+                <input type="number" name="ug1" id="ug1"
+                    placeholder="Enter 1st semester GPA " minlength="1" min="1" required>
+                <div class="underline"></div>
+            </div>
+
+            <div class="input-field">
+                <input type="number" name="ug2" id="ug2"
+                    placeholder="Enter 2nd semester GPA " minlength="1" min="1" required>
+                <div class="underline"></div>
+            </div>
+            <div class="input-field">
+                <input type="number" name="ug3" id="ug3"
+                    placeholder="Enter 3rd semester GPA " minlength="1" min="1" required>
+                <div class="underline"></div>
+            </div>
+            <div class="input-field">
+                <input type="number" name="ug4" id="ug4"
+                    placeholder="Enter 4th semester GPA " minlength="1" min="1" required>
+                <div class="underline"></div>
+            </div>
+            <div class="input-field">
+                <input type="number" name="ug5" id="ug5"
+                    placeholder="Enter 5th semester GPA " minlength="1" min="1" required>
+                <div class="underline"></div>
+            </div>
+            <div class="input-field">
+                <input type="number" name="ug6" id="ug6"
+                    placeholder="Enter 6th semester GPA " minlength="1" min="1" required>
+                <div class="underline"></div>
+            </div>
+            <div class="input-field">
+                <input type="number" name="ug7" id="ug7"
+                    placeholder="Enter 7th semester GPA " minlength="1" min="1" required>
+                <div class="underline"></div>
+            </div>
+            <div class="input-field">
+                <input type="number" name="ug8" id="ug8"
+                    placeholder="Enter 8th semester GPA " minlength="1" min="1" required>
+                <div class="underline"></div>
+            </div>
+          <label style="font-weight: bolder;margin-top: 20px;">Personal Details:</label>
+          <div class="input-field">
+                <label>Upload Resume:</label><br>
+                <input type="file" name="resume" id="resume" accept="application/pdf" required>
+                <div class="underline"></div>
+            </div>
+            <div class="input-field">
+                <label>Upload Offer Letter:</label><br>
+                <input type="file" name="offerletter" id="offerletter" accept="application/pdf">
+                <div class="underline"></div>
+            </div>
+            <div class="input-field">
+                <label>Achievements:</label><br>
+                <textarea id="achievements" name="achievements" rows="5" cols="100" required></textarea>
+            </div>
+            <input type="submit" value="Add New Student">
+        </form>      
+    </main>
+</body>
+</html>

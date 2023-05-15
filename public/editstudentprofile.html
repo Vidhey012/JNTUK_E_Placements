@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Profile</title>
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css'><link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  <link rel="stylesheet" href="/css/thisstyle.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <style>
+        .container{
+            width:800px;
+            margin-top: 20%;
+        }
+        textarea{
+          width:700px;
+        }
+        .nav-link,.navbar-brand{
+          color: white;
+        }
+        label,textarea{
+          font-size: large;
+        }
+        form .input-field:first-child {
+        margin-bottom: 0rem;
+        }
+        @media screen  and (max-width:1000px){
+          textarea{
+            width:600px;
+          }
+        }
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function($scope, $http) {
+      $http.get('/showeditprofile')
+        .then(function(response) {
+          $scope.users = response.data;
+        });
+    });
+  </script>
+   <script>
+    function myFunction()
+    {
+      document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });
+    }
+</script>
+  <link rel="stylesheet" href="/css/registerstyle.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-md  bg-body-tertiary fixed-top" style="background: linear-gradient(45deg, #8e2de2, #4a00e0);">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/viewnotifications"><img src="../css/Jntuk-logo.png" width="60px" height="50px"> UCEK Training and Placement Cell</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse " id="navbarTogglerDemo02">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page"  style="color: white;font-size: 1rem;" href="/viewnotifications">Notifications</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/studentaq" style="font-size: 1rem;">Add Query</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/queryresponse" style="font-size: 1rem;">View Response</a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" href="/selectedstudents" style="font-size: 1rem;">Selected students</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/viewcompanies" style="font-size: 1rem;"> Company details</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"  style="font-size: 1rem;"> Interviews    </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/shareexperience">Share Experience</a></li>
+            <li><a class="dropdown-item" href="/viewinsights">View Insights</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"  style="font-size: 1rem;"> Profile
+            <img src="../css/profile1.png" width="45px" height="30px">
+           
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/viewstudentprofile">View Profile</a></li>
+            <li><a class="dropdown-item" href="/editstudentprofile">Edit Profile</a></li>
+            <li><a class="dropdown-item" href="/studentcp">Change Password</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="/" onclick="myFunction();">Logout</a></li>
+          </ul>
+        </li>
+        <li><pre> </pre></li>
+      </ul>       
+    </div>
+  </div>
+</nav>
+ 
+   <main class="container">
+        <h2 style="text-align: center;"> Edit Profile Details</h2>
+        <form id="upform" action="/updatestudent" method="post" #userForm="ngForm" ng-controller="myCtrl"  enctype="multipart/form-data" >
+            <div class="input-field">
+            <label style="font-weight: bolder;">Basic Details</label>
+            </div>
+            
+            <div class="input-field">
+                <label>Name</label>
+                <input type="text" name="name" id="name"
+                  placeholder="Enter Your Full name" value="{{users.name}}" minlength="1" required>
+                <div class="underline"></div>
+              </div>
+            
+              <div class="input-field">
+                <label>Username</label>
+                <input type="text" name="username" id="username"
+                  placeholder="Enter Your Registration number" value="{{users.username}}" minlength="1" min="1" required readonly>
+                <div class="underline"></div>
+              </div>
+              <div class="input-field">
+                <label>Gender</label>
+                <input type="text" name="gender" id="gender" value="{{users.gender}}" minlength="1" min="1" required>
+                <div class="underline"></div>
+              </div>
+            
+              <div class="input-field">
+                <label>Phone Number</label>
+                <input type="number" name="phone" id="phone"
+                  placeholder="Enter Your Phone number" value="{{users.phone}}" minlength="10" min="6" required>
+                <div class="underline"></div>
+              </div>
+              <div class="input-field">
+                <label>Address</label>
+                <input type="text" name="address" id="address"
+                    placeholder="Enter Your address" value="{{users.address}}" minlength="1" required>
+                <div class="underline"></div>
+            </div>
+
+              <div class="input-field">
+                <label>Date Of Birth</label>
+                <input type="text" name="dob" value="{{ users.dob | date: 'shortDate' }}" max="2005-01-01" required>
+                <div class="underline"></div>
+              </div>
+
+            <div class="input-field">
+                <label>Email</label>
+                <input type="email" name="email" id="email"
+                  placeholder="Enter Your Email" value="{{users.email}}" minlength="1" required>
+                <div class="underline"></div>
+              </div>
+
+              <div class="input-field">
+                <label>Languages:</label>
+                <input type="text" name="language" id="language"
+                    placeholder="Enter Languages Known" value="{{users.languages}}" minlength="1" required >
+                <div class="underline"></div>
+            </div>
+
+              <div class="input-field">
+                <label for="course">Course</label><br>
+                <input type="text" name="course" id="course"
+                value="{{users.course}}" minlength="1" required>
+                <div class="underline"></div>
+              </div>
+            
+              <div class="input-field">
+                <label for="branch">Branch</label><br>
+                <input type="text" name="branch" id="branch"
+                value="{{users.branch}}" minlength="1" required>
+                <div class="underline"></div>
+              </div>
+            
+              <div class="input-field">
+                <label style="font-weight: bolder;">Academic Details</label>
+              </div>
+              
+              <div class="input-field">
+                <label>School Name</label>
+                <input type="text" name="school" id="school"
+                    placeholder="Enter Your school name" value="{{users.schoool}}" minlength="1"  required>
+                <div class="underline"></div>
+            </div>
+
+              <div class="input-field">
+                <label>10th GPA</label>
+                <input type="number" name="gpa10" id="gpa10"
+                  placeholder="Enter Your 10th GPA" value="{{users.gpa10}}" step="0.01" minlength="1" required>
+                <div class="underline"></div>
+              </div>
+
+              <div class="input-field">
+                <label>Inter Type </label>
+                <input type="text" name="intertype" id="inter"
+                    placeholder="Choose Inter or Diploma" value="{{users.intertype}}" minlength="1"  required>
+                <div class="underline"></div>
+              </div>
+            
+              <div class="input-field">
+                <label>Intermediate/Diploma College </label>
+                <input type="text" name="inter" id="inter"
+                    placeholder="Enter Your Intermediate/Diploma college name" value="{{users.intercollege}}" minlength="1"  required>
+                <div class="underline"></div>
+              </div>
+
+              <div class="input-field">
+                <label>12th GPA</label>
+                <input type="number" name="gpa12" id="gpa12"
+                  placeholder="Enter Your 12th GPA" value="{{users.gpa12}}" minlength="1" step="0.01" required>
+                <div class="underline"></div>
+              </div>
+              <div class="input-field">
+                <label>Btech College </label>
+                <input type="text" name="btech" id="btech" value="University College Of Engineering Kakinada(A)" minlength="1"  disabled required>
+                <div class="underline"></div>
+            </div>
+            <div class="input-field">
+              <label>Btech CGPA</label>
+              <input type="number" name="cgpa" id="cgpa"
+                  placeholder="Enter Btech CGPA" value="{{users.cgpa}}" minlength="1" step="0.01" required>
+              <div class="underline"></div>
+          </div>
+          
+              <div class="input-field">
+                <label>No of backlogs</label>
+                <input type="number" name="backlogs" id="backlogs"
+                    placeholder="Enter no of backlogs" value="{{users.backlogs}}" minlength="1" required>
+                <div class="underline"></div>
+            </div>
+
+            <div class="input-field">
+              <label> Companies placed</label>
+              <input type="number" name="noofcompaniesplaced" id="noofcompaniesplaced"
+                  placeholder="Enter no of companies placed" value="{{users.noofcompaniesplaced}}" minlength="1" required>
+              <div class="underline"></div>
+          </div>
+
+          <div class="input-field">
+            <label>Names of Companies</label>
+              <input type="text" name="namesofcompanies" id="namesofcompanies"
+                  placeholder="Enter names of placed companies(NA if not placed) " value="{{users.namesofcompaniesplaced}}" minlength="1"  required>
+              <div class="underline"></div>
+          </div>
+
+
+          <label style="font-weight: bolder;margin-top: 20px;">Personal Details</label>
+          <div class="input-field">
+            <label>Profile Picture</label><br>
+            <a href="uploads/{{ users.profile }}" style="font-size: medium;">{{users.profile}}</a>
+            <div class="underline"></div>
+        </div>
+          <div class="input-field">
+            <label>Upload new Picture</label><br>
+            <input type="file" name="profile" id="profile" accept="jpg/png/jpeg" >
+            <div class="underline"></div>
+        </div>
+
+          <div class="input-field">
+            <label>Resume</label><br>
+            <a href="uploads/{{ users.resume[0] }}" style="font-size: medium;">{{users.resume}}</a>
+            <div class="underline"></div>
+        </div>
+            <div class="input-field">
+                <label>Upload New Resume</label><br>
+                <input type="file" name="resume" id="resume" accept="application/pdf" >
+                <div class="underline"></div>
+            </div>
+            
+            <div class="input-field">
+                <label>Offer Letter</label><br>
+                <div ng-repeat="i in users.offerletter" >
+                  <a href="../uploads/{{i}}" style="font-size: medium;">{{i}}</a>
+                </div>
+                <div class="underline"></div>
+            </div> 
+            <div class="input-field">
+                <label>Upload New Offer Letter</label><br>
+                <input type="file" name="offerletter" id="offerletter" accept="application/pdf">
+                <div class="underline"></div>
+            </div> 
+
+            <div class="input-field">
+              <label>Certifications</label><br>
+              <input type="text" name="certificates" id="certificates"
+                  placeholder="Enter Your certifications(seperate by ',')" value="{{users.certifications}}" minlength="1"  required>
+              <div class="underline"></div>              
+          </div>
+
+          <div class="input-field">
+            <label>Skills</label><br>
+            <input type="text" name="skills" id="skills"
+                placeholder="Enter Your skills(seperate by ',')" value="{{users.skills}}" minlength="1"  required>
+            <div class="underline"></div>
+        </div>
+
+        <div class="input-field">
+          <label>Projects</label><br>
+          <input type="text" name="project" id="project"
+              placeholder="Enter Your Projects(seperate by ',')" value="{{users.projects}}" minlength="1"  required>
+          <div class="underline"></div>
+      </div>
+            <div class="input-field">
+                <label>Achievements</label><br>
+                <textarea id="achievements" name="achievements"  rows="4" cols="90" style="font-size: medium;color: gray;" required>{{users.achievements}}</textarea>
+            </div>
+  
+            <input type="submit" value="Update Details">
+            
+        </form>
+    </main>
+</body>
+</body>
+</html>
