@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+    <!-- FONTS -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Raleway:100' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+    <style>
+        * {
+            box-sizing: border-box;
+            transition: 0.35s ease;
+        }
+        
+        body {
+            width: 70%;
+            margin-left: 10%;
+        }
+        
+        .rela-block {
+            display: block;
+            position: relative;
+            margin: auto;
+            top: 0px;
+            bottom: 0px;
+            left: 0px;
+            right: 0px;
+        }
+        
+        .rela-inline {
+            display: inline-block;
+            position: relative;
+            margin: auto;
+            top: 0px;
+            bottom: 0px;
+            left: 0px;
+            right: 0px;
+        }
+        
+        .floated {
+            display: inline-block;
+            position: relative;
+            margin: false;
+            top: 0px;
+            bottom: 0px;
+            left: 0px;
+            right: 0px;
+        }
+        
+        .abs-center {
+            position: absolute;
+            text-align: center;
+        }
+        
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 18px;
+            letter-spacing: 0px;
+            background: url("http://kingofwallpapers.com/leaves/leaves-016.jpg") right no-repeat;
+            background-size: cover;
+        }
+        
+        body:before {
+            content: "";
+            display: false;
+            position: fixed;
+            margin: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.92);
+        }
+        
+        .caps {
+            text-transform: uppercase;
+        }
+        
+        .justified {
+            text-align: justify;
+        }
+        
+        p.light {
+            color: #777;
+        }
+        
+        h2 {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 30px;
+            letter-spacing: 5px;
+            font-weight: 600;
+            line-height: 40px;
+            color: #000;
+        }
+        
+        h3 {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 21px;
+            letter-spacing: 1px;
+            font-weight: 600;
+            line-height: 20px;
+            color: #000;
+        }
+        
+        .page {
+            width: 90%;
+            margin: 60px auto;
+            max-width: 1200px;
+            background-color: #fff;
+            box-shadow: 6px 10px 28px 0px rgba(0, 0, 0, 0.4);
+        }
+        
+        .top-bar {
+            height: 140px;
+            background-color: #286c96;
+            color: #fff;
+        }
+        
+        .name {
+            display: false;
+            position: absolute;
+            left: calc(350px + 5%);
+            right: 0;
+            bottom: 0;
+            height: 100px;
+            text-align: right;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 33px;
+        }
+        
+        .name div {
+            width: 94%;
+        }
+        
+        .side-bar {
+            display: false;
+            position: absolute;
+            top: 0px;
+            bottom: 0px;
+            margin: false;
+            right: false;
+            color: #fff;
+            width: 350px;
+            background-color: #385271;
+            padding: 300px 30px 50px;
+        }
+        
+        .mugshot {
+            display: false;
+            position: absolute;
+            margin: false;
+            top: 50px;
+            left: 70px;
+            right: false;
+            bottom: false;
+            height: 210px;
+            width: 210px;
+        }
+        
+        .mugshot .logo {
+            margin: -23px;
+        }
+        
+        .logo {
+            display: false;
+            position: absolute;
+            margin: false;
+            top: 0;
+            left: 0;
+            right: false;
+            bottom: false;
+            z-index: 100;
+            margin: 0;
+            color: #000;
+            height: 250px;
+            width: 250px;
+        }
+        
+        .logo .logo-svg {
+            height: 100%;
+            width: 100%;
+            stroke: #f9f4f4;
+            cursor: pointer;
+        }
+        
+        .logo .logo-text {
+            display: false;
+            position: absolute;
+            margin: false;
+            top: 58%;
+            left: 0;
+            right: 16%;
+            bottom: 0;
+            cursor: pointer;
+            font-family: "Montserrat";
+            font-size: 55px;
+            letter-spacing: 0px;
+            font-weight: 400;
+            line-height: 58.333333333333336px;
+        }
+        
+        .side-header {
+            font-family: 'Open Sans';
+            font-size: 18px;
+            letter-spacing: 2px;
+            font-weight: 600;
+            line-height: 20px;
+            margin: 23px auto;
+            border-bottom: 1px solid #888;
+            position: relative;
+        }
+        
+        .list-thing {
+            margin-bottom: 7px;
+        }
+        
+        .content-container {
+            margin-right: 0;
+            width: calc(95% - 350px);
+            padding: 25px 30px 50px 0px;
+        }
+        
+        .content-container>* {
+            margin: 0 auto 25px;
+        }
+        
+        .content-container>h3 {
+            margin: 0 auto 5px;
+        }
+        
+        .content-container>p.long-margin {
+            margin: 0 auto 50px;
+        }
+        
+        .title {
+            width: 80%;
+            text-align: center;
+        }
+        
+        .separator {
+            width: 240px;
+            height: 2px;
+            background-color: #999;
+        }
+        
+        .greyed {
+            background-color: #8fbdec;
+            width: 100%;
+            max-width: 580px;
+            text-align: center;
+            font-family: 'Open Sans';
+            font-size: 18px;
+            letter-spacing: 3px;
+            font-weight: 600;
+            line-height: 27px;
+        }
+        
+        #filter-btn {
+            cursor: pointer;
+            width: 200px;
+            padding: 10px 10px;
+            border-radius: 12px;
+            display: inline-block;
+            color: white;
+            background: linear-gradient(45deg, #8e2de2, #4a00e0);
+        }
+        
+        .grey {
+            background-color: #888;
+            width: auto;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 18px;
+            text-align: left;
+            line-height: 27px;
+            border-radius: 10px;
+            float: left;
+            padding: 0px 5px;
+            margin-bottom: 10px;
+            margin-left: 5px;
+        }
+        
+        @media screen and (max-width: 1150px) and (min-width:449px) {
+            .name {
+                color: #fff;
+                font-family: 'Times New Roman', Times, serif;
+                font-size: 38px;
+                letter-spacing: 6px;
+                font-weight: 100;
+                line-height: 48px;
+            }
+        }
+        
+        @media screen and (max-width:450px) {
+            #resume {
+                width: 500%;
+            }
+            .name {
+                letter-spacing: 3px;
+                color: #fff;
+                font-family: 'Times New Roman', Times, serif;
+                font-size: 35px;
+                line-height: 48px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div id="resume" class="rela-block page container-fluid">
+            <div class="rela-block top-bar">
+                <div class="caps name  ">
+                    <div class="abs-center"><b id="name">
+              <%= data.name%>
+            </b></div>
+                </div>
+            </div>
+            <div class="side-bar">
+                <div class="mugshot">
+                    <img src="<%= data.profile%>" alt="profile pic" width="200px" height="200px" class="rounded-circle border border-4 border-radius">
+                </div>
+                <p class="rela-block caps side-header">Contact</p>
+                <p><b>Phone:</b>
+                    <%= data.phone%>
+                </p>
+                <p hidden id="username">
+                    <%= data.username%>
+                </p>
+                <p><b>Email:</b>
+                    <%= data.email%>
+                </p>
+                <p><b>Address:</b>
+                    <%= data.address%>
+                </p>
+                <p class="rela-block caps side-header">Skills</p>
+                <% var skillsArr=data.skills.split(","); %>
+                    <% for (var i=0; i < skillsArr.length; i++) { %>
+                        <p class="rela-block grey ">
+                            <%= skillsArr[i] %>
+                        </p>
+                        <% } %>
+                            <p class="rela-block caps side-header">Certifications</p>
+                            <% var certifiArr=data.certifications.split(","); %>
+                                <% for (var i=0; i < certifiArr.length; i++) { %>
+                                    <p class="rela-block list-thing">
+                                        <%= certifiArr[i] %>
+                                    </p>
+                                    <% } %>
+                                        <p class="rela-block caps side-header">Languages</p>
+                                        <% var langArr=data.languages.split(","); %>
+                                            <% for (var i=0; i < langArr.length; i++) { %>
+                                                <p class="rela-block list-thing">
+                                                    <%= langArr[i] %>
+                                                </p>
+                                                <% } %>
+            </div>
+            <div class="rela-block content-container">
+                <div class="rela-block caps greyed">Objective</div>
+                <p class="long-margin" style="text-align: justify;">
+                    An enthusiastic and hardworking B.Tech graduate seeking a challenging role in a dynamic organization where I can apply my technical skills and knowledge to contribute to the growth of the company. I am eager to learn new technologies and work collaboratively
+                    with a team to solve complex problems. My ultimate goal is to build a successful career and make a significant contribution to the industry
+                </p>
+                <div class="rela-block caps greyed">Education</div>
+                <ul class="long-margin">
+                    <li style="margin: 2%;">
+                        <h5 style="margin: 0%;font-size: large;"><b>University College Of Engineering Kakinada(A)</b></h5>
+                        <p style="margin: 0%;">
+                            <%= data.course%>
+                        </p>
+                        <p style="margin: 0%;">
+                            <%= data.branch%>
+                        </p>
+                        <p style="margin: 0%;">B.Tech GPA:
+                            <%= data.gpa12%>
+                        </p>
+                    </li>
+                    <li style="margin: 2%;">
+                        <h5 style="margin: 0%;font-size: large;"><b>
+                <%= data.intercollege%>
+              </b></h5>
+                        <p style="margin: 0%;"> Inter GPA:
+                            <%= data.gpa12%>
+                        </p>
+                    </li>
+                    <li style="margin: 2%;">
+                        <h5 style="margin: 0%;font-size: large;"><b>
+                <%= data.schoool%>
+              </b></h5>
+                        <p style="margin: 0%;">SSC GPA:
+                            <%= data.gpa10%>
+                        </p>
+                    </li>
+                </ul>
+                <div class="rela-block caps greyed">Projects</div>
+                <% var proArr=data.projects.split(","); %>
+                    <% for (var i=0; i < proArr.length; i++) { %>
+                        <p class="rela-block list-thing">
+                            <%= proArr[i] %>
+                        </p>
+                        <% } %>
+                            <div class="rela-block caps greyed">Achievements/Awards</div>
+                            <% var achiArr=data.achievements.split(","); %>
+                                <% for (var i=0; i < achiArr.length; i++) { %>
+                                    <p class="rela-block list-thing">
+                                        <%= achiArr[i] %>
+                                    </p>
+                                    <% } %>
+            </div>
+        </div>
+    </div>
+    <div>
+        <button id="filter-btn" onclick="Convert_HTML_To_PDF();" style="cursor: pointer; width: 200px; padding: 10px 10px; border-radius: 12px; margin-left:280px; margin-right: 100px;" onmouseover="this.style.transform = 'scale(1.1)'" onmouseout="this.style.transform = 'scale(1)'"
+            hidden>Download</button>
+    </div>
+    <script>
+        setTimeout(() => {
+            Convert_HTML_To_PDF()
+        }, 3000)
+
+        // function downloadResume() {
+        //     let resume = document.getElementById('resume')
+        //         // console.log(resume)
+        //         // html2canvas(resume).then(canvas => {
+
+        //     //  const image = canvas.toDataURL("image/png");
+        //     //  const link = document.createElement('a');
+        //     //  link.download = 'myImage.png';
+        //     //  link.href = image;
+        //     //  document.body.appendChild(link);
+        //     //   link.click();
+        //     //   document.body.removeChild(link);
+
+
+
+
+        //     //     html2canvas(resume).then(canvas => {  
+        //     //       var imgData = canvas.toDataURL("image/png");
+        //     // var pdf = new jsPDF();   
+        //     // pdf.addImage(canvas.toDataURL("image/png"), 'PNG', 0, 0, canvas.width, canvas.height)
+        //     // pdf.save('myDocument.pdf');
+        //     // });
+
+        //     html2canvas(resume).then((canvas) => {
+        //         const pdf = new jsPDF('p', 'mm', 'a4');
+        //         const imgData = canvas.toDataURL("image/png");
+        //         const imgProps = pdf.getImageProperties(imgData);
+        //         const pdfWidth = pdf.internal.pagesize.getWidth();
+        //         const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+        //         pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+        //         pdf.save(resume.pdf);
+
+        //     })
+
+        // }
+        window.jsPDF = window.jspdf.jsPDF;
+
+        function Convert_HTML_To_PDF() {
+            var name = (document.getElementById("username").innerHTML).trim();
+            var doc = new jsPDF('p', 'mm', [1250, 990]);
+
+            var elementHTML = document.querySelector("#resume");
+            doc.html(elementHTML, {
+                callback: function(doc) {
+                    doc.save(name + '_resume.pdf');
+                }
+            });
+        }
+    </script>
+</body>

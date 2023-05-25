@@ -10,11 +10,12 @@
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
     <!-- FONTS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Raleway:100' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
     <style>
-        * {
+        /* * {
             box-sizing: border-box;
             transition: 0.35s ease;
         }
@@ -286,33 +287,247 @@
             margin-left: 5px;
         }
         
-        @media screen and (max-width: 1150px) and (min-width:449px){
+        @media screen and (max-width: 1150px) and (min-width:449px) {
             .name {
                 color: #fff;
-                font-family:'Times New Roman', Times, serif;
+                font-family: 'Times New Roman', Times, serif;
                 font-size: 38px;
                 letter-spacing: 6px;
                 font-weight: 100;
                 line-height: 48px;
             }
         }
+        
         @media screen and (max-width:450px) {
-            #resume{
+            #resume {
                 width: 500%;
             }
-            .name{
+            .name {
                 letter-spacing: 3px;
                 color: #fff;
-                font-family:'Times New Roman', Times, serif;
+                font-family: 'Times New Roman', Times, serif;
                 font-size: 35px;
                 line-height: 48px;
             }
-            
+        } */
+        
+        body {
+            background: #e4efea;
+        }
+        
+        .div>p,
+        span,
+        li,
+        td {
+            font-size: 13.5pt;
+            font-family: Arial;
+        }
+        
+        .div {
+            background: white;
+            display: block;
+            margin: 0 auto;
+            margin-bottom: 0.5cm;
+            box-shadow: 0 0 0.5cm rgba(0, 0, 0, 0.5);
+        }
+        
+        .div[size="A4"] {
+            width: 21cm;
+            height: 29.7cm;
+        }
+        
+        .div[size="A4"][layout="portrait"] {
+            width: 29.7cm;
+            height: 21cm;
+        }
+        
+        @media print {
+            body,
+            page {
+                margin: 0;
+                box-shadow: 0;
+            }
+        }
+        
+        div.card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         }
     </style>
 </head>
 
 <body>
+    <div id="resume" style="padding: 20px; margin-top: 20px;" class="div" size="A4">
+        <div class="row">
+            <div class="col-2"><img src="css\logo.jpg" alt="logo" width="120px" height="120px" class=""></div>
+            <div align="right" class="col-8">
+                <h3 style="text-transform: uppercase; color:#0096dd; margin-bottom:0px;">
+                    <%= data.name%>
+                </h3>
+                <b style="margin-bottom:0px;"><%= data.course%> - <%= data.branch%></b>
+
+                <p style="font-size: 0.83em; ">
+                    <b style="color:#0096dd; font-size: 0.83em; margin-bottom:0px;">Ph : </b>
+                    <%= data.phone%><br>
+
+                        <b style="color:#0096dd; font-size: 0.83em; margin-bottom:0px;">Email : </b>
+                        <%= data.email%><br>
+
+                            <%= data.address%>
+                                <p hidden id="username">
+                                    <%= data.username%>
+                                </p>
+                </p>
+            </div>
+            <div align="left" class="col-2"><img src="<%= data.profile%>" alt="profile" width="120px" height="120px" class=""></div>
+        </div>
+        <div class="row" style="margin-top:0px;">
+            <div class="col-12 " style="background-color: #0096dd; color: white; text-transform: uppercase;">
+                <b>BRIEF&nbsp; OVERVIEW &nbsp;/ CAREER&nbsp;&nbsp;&nbsp; OBJECTIVE &nbsp;&nbsp;/ SUMMARY</b>
+            </div>
+        </div>
+        <p style="margin-top:10px; font-size: 0.83em;">
+            An enthusiastic and hardworking B.Tech graduate seeking a challenging role in a dynamic organization where I can apply my technical skills and knowledge to contribute to the growth of the company. I am eager to learn new technologies and work collaboratively
+            with a team to solve complex problems. My ultimate goal is to build a successful career and make a significant contribution to the industry.
+        </p>
+
+        <div class="row" style="margin-top:10px;">
+            <div class="col-12 " style="background-color: #0096dd; color: white; text-transform: uppercase;">
+                <b>Languages&nbsp;&nbsp; Known</b>
+            </div>
+        </div>
+
+        <% var langArr=data.languages.split(","); %>
+            <div class="row" style="margin-top:10px;">
+                <% for (var i=0; i < langArr.length; i++) { %>
+                    <div class="col" align="center" style="background-color:#eeeeeb ; border-radius: 10px;  font-size: 0.83em;">
+                        <%= langArr[i] %>
+                    </div>&nbsp;&nbsp;
+                    <% if((i+1)%8==0 && i!=langArr.length-1){ %>
+            </div>
+            <div class="row" style="margin-top:10px;">
+                <% } %>
+                    <% } %>
+            </div>
+
+            <div class="row" style="margin-top:10px;">
+                <div class="col-12" style="background-color: #0096dd; color: white; text-transform: uppercase;">
+                    <b>EDUCATION</b>
+                </div>
+            </div>
+            <% var year=parseInt(data.username.slice(0, 2));%>
+                <% var btechyear,tenthyear; if(data.intertype=="Inter"){btechyear=year+4; tenthyear=year-2;}else{btechyear=year+3; tenthyear=year-3;} %>
+                    <div class="row card" style="margin-top:10px;">
+                        <div class="col-12">
+                            <h6 style="text-transform: uppercase; margin-bottom: 0px;  margin-top: 5px;"><b>University&nbsp; College &nbsp;&nbsp;Of Engineering&nbsp; Kakinada(A)</b></h6>
+                            <p style="margin-top:0px; margin-bottom: 5px;">
+                                <b><%= data.course%> - <%= data.branch%>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;CGPA : <%= data.cgpa%> / 10</b>
+                                <i align="right" style="position: absolute; right: 10px;">20<%= year %>-20<%= btechyear %></i>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row card" style="margin-top:10px;">
+                        <div class="col-12">
+                            <h6 style="text-transform: uppercase; margin-bottom: 0px;  margin-top: 5px;"><b><%= data.intercollege%></b></h6>
+                            <p style="margin-top:0px; margin-bottom: 5px;">
+                                <b>12<sup>th</sup>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;CGPA : <%= data.gpa12%> / 10</b>
+                                <i align="right" style="position: absolute; right: 10px;">20<%= year %></i>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row card" style="margin-top:10px;">
+                        <div class="col-12">
+                            <h6 style="text-transform: uppercase; margin-bottom: 0px;  margin-top: 5px;"><b><%= data.schoool%></b></h6>
+                            <p style="margin-top:0px; margin-bottom: 5px;">
+                                <b>10<sup>th</sup>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;CGPA : <%= data.gpa10%> / 10</b>
+                                <i align="right" style="position: absolute; right: 10px;">20<%= tenthyear %></i>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-top:10px;">
+                        <div class="col-12 " style="background-color: #0096dd; color: white; text-transform: uppercase;">
+                            <b>TECHNICAL &nbsp;&nbsp;SKILLS</b>
+                        </div>
+                    </div>
+
+                    <% var skillsArr=data.skills.split(","); %>
+                        <div class="row" style="margin-top:10px;">
+                            <% for (var i=0; i < skillsArr.length; i++) { %>
+                                <div class="col" align="center" style="background-color:#eeeeeb ; border-radius: 10px;  font-size: 0.83em;">
+                                    <%= skillsArr[i] %>
+                                </div>&nbsp;&nbsp;
+                                <% if((i+1)%5==0 && i!=skillsArr.length-1){ %>
+                        </div>
+                        <div class="row" style="margin-top:10px;">
+                            <% } %>
+                                <% } %>
+                        </div>
+
+                        <div class="row" style="margin-top:10px;">
+                            <div class="col-12 " style="background-color: #0096dd; color: white; text-transform: uppercase;">
+                                <b>Certifications</b>
+                            </div>
+                        </div>
+                        <ul style="font-size: 0.83em; margin-top: 10px;">
+                            <% var certifiArr=data.certifications.split(","); %>
+                                <% for (var i=0; i < certifiArr.length; i++) { %>
+                                    <li style="font-size: 1.2em;">
+                                        <%= certifiArr[i] %>
+                                    </li>
+                                    <% } %>
+                        </ul>
+
+                        <div class="row" style="margin-top:10px;">
+                            <div class="col-12 " style="background-color: #0096dd; color: white; text-transform: uppercase;">
+                                <b>PROJECTS</b>
+                            </div>
+                        </div>
+                        <% var proArr=data.projects.split(","); %>
+                            <% for (var i=0; i < proArr.length; i++) { %>
+                                <div class="row" style="margin-top:10px;">
+                                    <div class="col" align="left" style="background-color:#eeeeeb ; border-radius: 10px;  font-size: 1.0em; padding-bottom: 3px;">
+                                        <%= proArr[i] %>
+                                    </div>
+                                </div>
+                                <% } %>
+
+                                    <div class="row" style="margin-top:10px;">
+                                        <div class="col-12 " style="background-color: #0096dd; color: white; text-transform: uppercase;">
+                                            <b>Achievements &nbsp;&nbsp;/ Awards</b>
+                                        </div>
+                                    </div>
+                                    <ul style="font-size: 0.83em; margin-top: 10px;">
+                                        <% var achiArr=data.achievements.split(","); %>
+                                            <% for (var i=0; i < achiArr.length; i++) { %>
+                                                <li style="font-size: 1.2em;">
+                                                    <%= achiArr[i] %>
+                                                </li>
+                                                <% } %>
+                                    </ul>
+
+                                    <div class="row" style="margin-top:10px;">
+                                        <div class="col-12 " style="background-color: #0096dd; color: white; text-transform: uppercase;">
+                                            <b>PERSONAL&nbsp;&nbsp; DETAILS</b>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6"><b>Date of Birth : </b>
+                                            <%= data.dob%><br/><b>Gender : </b>
+                                                <%= data.gender%>
+                                        </div>
+                                        <div class="col-6"><b>Phone No : </b>
+                                            <%= data.phone%><br/><b>Email : </b>
+                                                <%= data.email%>
+                                        </div>
+                                        <div class="col-12"><b>Current Address : </b>
+                                            <%= data.address%>
+                                        </div>
+                                    </div>
+    </div>
+
+
+
+    <!-- 
     <div>
         <div id="resume" class="rela-block page container-fluid">
             <div class="rela-block top-bar">
@@ -414,15 +629,14 @@
                                     <% } %>
             </div>
         </div>
-    </div>
-    <div>
-        <button id="filter-btn" onclick="Convert_HTML_To_PDF();" style="cursor: pointer; width: 200px; padding: 10px 10px; border-radius: 12px; margin-left:280px; margin-right: 100px;" onmouseover="this.style.transform = 'scale(1.1)'" onmouseout="this.style.transform = 'scale(1)'"
-            hidden>Download</button>
+    </div> -->
+    <div style="position: fixed; right: 20px; bottom: 20px;">
+        <button type="button" class="btn btn-primary" style="border-radius: 20px;" onclick="Convert_HTML_To_PDF();">&nbsp;&nbsp;<i class="fa fa-download"></i> Download&nbsp;&nbsp;</button>
     </div>
     <script>
-        setTimeout(() => {
-            Convert_HTML_To_PDF()
-        }, 3000)
+        // setTimeout(() => {
+        //     Convert_HTML_To_PDF()
+        // }, 3000)
 
         // function downloadResume() {
         //     let resume = document.getElementById('resume')
@@ -462,16 +676,18 @@
         window.jsPDF = window.jspdf.jsPDF;
 
         function Convert_HTML_To_PDF() {
+            var width = document.getElementById('resume').clientWidth;
+            var height = document.getElementById('resume').clientHeight;
             var name = (document.getElementById("username").innerHTML).trim();
-            var doc = new jsPDF('p', 'mm',[1250,990]);
-            
+            var doc = new jsPDF('p', 'pt', [width, height]);
+            var pageCount = doc.internal.getNumberOfPages();
             var elementHTML = document.querySelector("#resume");
             doc.html(elementHTML, {
                 callback: function(doc) {
+                    doc.deletePage(pageCount + 1);
                     doc.save(name + '_resume.pdf');
                 }
             });
         }
     </script>
 </body>
-
