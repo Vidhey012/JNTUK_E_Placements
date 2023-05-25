@@ -359,175 +359,190 @@
     <div id="resume" style="padding: 20px; margin-top: 20px;" class="div" size="A4">
         <div class="row">
             <div class="col-2"><img src="css\logo.jpg" alt="logo" width="120px" height="120px" class=""></div>
-            <div align="right" class="col-8">
-                <h3 style="text-transform: uppercase; color:#0096dd; margin-bottom:0px;">
-                    <%= data.name%>
-                </h3>
-                <b style="margin-bottom:0px;"><%= data.course%> - <%= data.branch%></b>
+            <% if(data.profile == "../uploads/0"){%>
+                <div align="right" class="col-10">
+                    <% }else{ %>
+                        <div align="right" class="col-8">
+                            <% } %>
+                                <h3 style="text-transform: uppercase; color:#0096dd; margin-bottom:0px;">
+                                    <%= data.name%>
+                                </h3>
+                                <b style="margin-bottom:0px;"><%= data.course%> - <%= data.branch%></b>
 
-                <p style="font-size: 0.83em; ">
-                    <b style="color:#0096dd; font-size: 0.83em; margin-bottom:0px;">Ph : </b>
-                    <%= data.phone%><br>
+                                <p style="font-size: 0.83em; ">
+                                    <b style="color:#0096dd; font-size: 0.83em; margin-bottom:0px;">Ph : </b>
+                                    <%= data.phone%><br>
 
-                        <b style="color:#0096dd; font-size: 0.83em; margin-bottom:0px;">Email : </b>
-                        <%= data.email%><br>
+                                        <b style="color:#0096dd; font-size: 0.83em; margin-bottom:0px;">Email : </b>
+                                        <%= data.email%><br>
 
-                            <%= data.address%>
-                                <p hidden id="username">
-                                    <%= data.username%>
+                                            <%= data.address%>
+                                                <p hidden id="username">
+                                                    <%= data.username%>
+                                                </p>
                                 </p>
-                </p>
-            </div>
-            <div align="left" class="col-2"><img src="<%= data.profile%>" alt="profile" width="120px" height="120px" class=""></div>
-        </div>
-        <div class="row" style="margin-top:0px;">
-            <div class="col-12 " style="background-color: #0096dd; color: white; text-transform: uppercase;">
-                <b>BRIEF&nbsp; OVERVIEW &nbsp;/ CAREER&nbsp;&nbsp;&nbsp; OBJECTIVE &nbsp;&nbsp;/ SUMMARY</b>
-            </div>
-        </div>
-        <p style="margin-top:10px; font-size: 0.83em;">
-            An enthusiastic and hardworking B.Tech graduate seeking a challenging role in a dynamic organization where I can apply my technical skills and knowledge to contribute to the growth of the company. I am eager to learn new technologies and work collaboratively
-            with a team to solve complex problems. My ultimate goal is to build a successful career and make a significant contribution to the industry.
-        </p>
-
-        <div class="row" style="margin-top:10px;">
-            <div class="col-12 " style="background-color: #0096dd; color: white; text-transform: uppercase;">
-                <b>Languages&nbsp;&nbsp; Known</b>
-            </div>
-        </div>
-
-        <% var langArr=data.languages.split(","); %>
-            <div class="row" style="margin-top:10px;">
-                <% for (var i=0; i < langArr.length; i++) { %>
-                    <div class="col" align="center" style="background-color:#eeeeeb ; border-radius: 10px;  font-size: 0.83em;">
-                        <%= langArr[i] %>
-                    </div>&nbsp;&nbsp;
-                    <% if((i+1)%8==0 && i!=langArr.length-1){ %>
-            </div>
-            <div class="row" style="margin-top:10px;">
-                <% } %>
-                    <% } %>
-            </div>
-
-            <div class="row" style="margin-top:10px;">
-                <div class="col-12" style="background-color: #0096dd; color: white; text-transform: uppercase;">
-                    <b>EDUCATION</b>
+                        </div>
+                        <% if(data.profile != "../uploads/0"){%>
+                            <div align="left" class="col-2"><img src="<%= data.profile%>" alt="profile" width="120px" height="120px" class=""></div>
+                            <% } %>
                 </div>
-            </div>
-            <% var year=parseInt(data.username.slice(0, 2));%>
-                <% var btechyear,tenthyear; if(data.intertype=="Inter"){btechyear=year+4; tenthyear=year-2;}else{btechyear=year+3; tenthyear=year-3;} %>
-                    <div class="row card" style="margin-top:10px;">
-                        <div class="col-12">
-                            <h6 style="text-transform: uppercase; margin-bottom: 0px;  margin-top: 5px;"><b>University&nbsp; College &nbsp;&nbsp;Of Engineering&nbsp; Kakinada(A)</b></h6>
-                            <p style="margin-top:0px; margin-bottom: 5px;">
-                                <b><%= data.course%> - <%= data.branch%>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;CGPA : <%= data.cgpa%> / 10</b>
-                                <i align="right" style="position: absolute; right: 10px;">20<%= year %>-20<%= btechyear %></i>
-                            </p>
-                        </div>
+                <div class="row" style="margin-top:0px;">
+                    <div class="col-12 " style="background-color: #0096dd; color: white; text-transform: uppercase;">
+                        <b>BRIEF&nbsp; OVERVIEW &nbsp;/ CAREER&nbsp;&nbsp;&nbsp; OBJECTIVE &nbsp;&nbsp;/ SUMMARY</b>
                     </div>
-                    <div class="row card" style="margin-top:10px;">
-                        <div class="col-12">
-                            <h6 style="text-transform: uppercase; margin-bottom: 0px;  margin-top: 5px;"><b><%= data.intercollege%></b></h6>
-                            <p style="margin-top:0px; margin-bottom: 5px;">
-                                <b>12<sup>th</sup>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;CGPA : <%= data.gpa12%> / 10</b>
-                                <i align="right" style="position: absolute; right: 10px;">20<%= year %></i>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="row card" style="margin-top:10px;">
-                        <div class="col-12">
-                            <h6 style="text-transform: uppercase; margin-bottom: 0px;  margin-top: 5px;"><b><%= data.schoool%></b></h6>
-                            <p style="margin-top:0px; margin-bottom: 5px;">
-                                <b>10<sup>th</sup>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;CGPA : <%= data.gpa10%> / 10</b>
-                                <i align="right" style="position: absolute; right: 10px;">20<%= tenthyear %></i>
-                            </p>
-                        </div>
-                    </div>
+                </div>
+                <p style="margin-top:10px; font-size: 0.83em;">
+                    An enthusiastic and hardworking B.Tech graduate seeking a challenging role in a dynamic organization where I can apply my technical skills and knowledge to contribute to the growth of the company. I am eager to learn new technologies and work collaboratively
+                    with a team to solve complex problems. My ultimate goal is to build a successful career and make a significant contribution to the industry.
+                </p>
 
+                <% if(data.languages != ""){%>
                     <div class="row" style="margin-top:10px;">
                         <div class="col-12 " style="background-color: #0096dd; color: white; text-transform: uppercase;">
-                            <b>TECHNICAL &nbsp;&nbsp;SKILLS</b>
+                            <b>Languages&nbsp;&nbsp; Known</b>
                         </div>
                     </div>
 
-                    <% var skillsArr=data.skills.split(","); %>
+                    <% var langArr=data.languages.split(","); %>
                         <div class="row" style="margin-top:10px;">
-                            <% for (var i=0; i < skillsArr.length; i++) { %>
+                            <% for (var i=0; i < langArr.length; i++) { %>
                                 <div class="col" align="center" style="background-color:#eeeeeb ; border-radius: 10px;  font-size: 0.83em;">
-                                    <%= skillsArr[i] %>
+                                    <%= langArr[i] %>
                                 </div>&nbsp;&nbsp;
-                                <% if((i+1)%5==0 && i!=skillsArr.length-1){ %>
+                                <% if((i+1)%8==0 && i!=langArr.length-1){ %>
                         </div>
                         <div class="row" style="margin-top:10px;">
                             <% } %>
                                 <% } %>
                         </div>
+                        <% } %>
 
-                        <div class="row" style="margin-top:10px;">
-                            <div class="col-12 " style="background-color: #0096dd; color: white; text-transform: uppercase;">
-                                <b>Certifications</b>
-                            </div>
-                        </div>
-                        <ul style="font-size: 0.83em; margin-top: 10px;">
-                            <% var certifiArr=data.certifications.split(","); %>
-                                <% for (var i=0; i < certifiArr.length; i++) { %>
-                                    <li style="font-size: 1.2em;">
-                                        <%= certifiArr[i] %>
-                                    </li>
-                                    <% } %>
-                        </ul>
-
-                        <div class="row" style="margin-top:10px;">
-                            <div class="col-12 " style="background-color: #0096dd; color: white; text-transform: uppercase;">
-                                <b>PROJECTS</b>
-                            </div>
-                        </div>
-                        <% var proArr=data.projects.split(","); %>
-                            <% for (var i=0; i < proArr.length; i++) { %>
-                                <div class="row" style="margin-top:10px;">
-                                    <div class="col" align="left" style="background-color:#eeeeeb ; border-radius: 10px;  font-size: 1.0em; padding-bottom: 3px;">
-                                        <%= proArr[i] %>
-                                    </div>
+                            <div class="row" style="margin-top:10px;">
+                                <div class="col-12" style="background-color: #0096dd; color: white; text-transform: uppercase;">
+                                    <b>EDUCATION</b>
                                 </div>
-                                <% } %>
-
-                                    <div class="row" style="margin-top:10px;">
-                                        <div class="col-12 " style="background-color: #0096dd; color: white; text-transform: uppercase;">
-                                            <b>Achievements &nbsp;&nbsp;/ Awards</b>
+                            </div>
+                            <% var year=parseInt(data.username.slice(0, 2));%>
+                                <% var btechyear,tenthyear; if(data.intertype=="Inter"){btechyear=year+4; tenthyear=year-2;}else{btechyear=year+3; tenthyear=year-3;} %>
+                                    <div class="row card" style="margin-top:10px;">
+                                        <div class="col-12">
+                                            <h6 style="text-transform: uppercase; margin-bottom: 0px;  margin-top: 5px;"><b>University&nbsp; College &nbsp;&nbsp;Of Engineering&nbsp; Kakinada(A)</b></h6>
+                                            <p style="margin-top:0px; margin-bottom: 5px;">
+                                                <b><%= data.course%> - <%= data.branch%>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;CGPA : <%= data.cgpa%> / 10</b>
+                                                <i align="right" style="position: absolute; right: 10px;">20<%= year %>-20<%= btechyear %></i>
+                                            </p>
                                         </div>
                                     </div>
-                                    <ul style="font-size: 0.83em; margin-top: 10px;">
-                                        <% var achiArr=data.achievements.split(","); %>
-                                            <% for (var i=0; i < achiArr.length; i++) { %>
-                                                <li style="font-size: 1.2em;">
-                                                    <%= achiArr[i] %>
-                                                </li>
+                                    <% if(data.intercollege != "0"){%>
+                                        <div class="row card" style="margin-top:10px;">
+                                            <div class="col-12">
+                                                <h6 style="text-transform: uppercase; margin-bottom: 0px;  margin-top: 5px;"><b><%= data.intercollege%></b></h6>
+                                                <p style="margin-top:0px; margin-bottom: 5px;">
+                                                    <b>12<sup>th</sup>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;CGPA : <%= data.gpa12%> / 10</b>
+                                                    <i align="right" style="position: absolute; right: 10px;">20<%= year %></i>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <% } %>
+                                            <% if(data.schoool != "0"){%>
+                                                <div class="row card" style="margin-top:10px;">
+                                                    <div class="col-12">
+                                                        <h6 style="text-transform: uppercase; margin-bottom: 0px;  margin-top: 5px;"><b><%= data.schoool%></b></h6>
+                                                        <p style="margin-top:0px; margin-bottom: 5px;">
+                                                            <b>10<sup>th</sup>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;CGPA : <%= data.gpa10%> / 10</b>
+                                                            <i align="right" style="position: absolute; right: 10px;">20<%= tenthyear %></i>
+                                                        </p>
+                                                    </div>
+                                                </div>
                                                 <% } %>
-                                    </ul>
+                                                    <% if(data.skills != "0"){%>
+                                                        <div class="row" style="margin-top:10px;">
+                                                            <div class="col-12 " style="background-color: #0096dd; color: white; text-transform: uppercase;">
+                                                                <b>TECHNICAL &nbsp;&nbsp;SKILLS</b>
+                                                            </div>
+                                                        </div>
 
-                                    <div class="row" style="margin-top:10px;">
-                                        <div class="col-12 " style="background-color: #0096dd; color: white; text-transform: uppercase;">
-                                            <b>PERSONAL&nbsp;&nbsp; DETAILS</b>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-6"><b>Date of Birth : </b>
-                                            <%= data.dob%><br/><b>Gender : </b>
-                                                <%= data.gender%>
-                                        </div>
-                                        <div class="col-6"><b>Phone No : </b>
-                                            <%= data.phone%><br/><b>Email : </b>
-                                                <%= data.email%>
-                                        </div>
-                                        <div class="col-12"><b>Current Address : </b>
-                                            <%= data.address%>
-                                        </div>
-                                    </div>
-    </div>
+                                                        <% var skillsArr=data.skills.split(","); %>
+                                                            <div class="row" style="margin-top:10px;">
+                                                                <% for (var i=0; i < skillsArr.length; i++) { %>
+                                                                    <div class="col" align="center" style="background-color:#eeeeeb ; border-radius: 10px;  font-size: 0.83em;">
+                                                                        <%= skillsArr[i] %>
+                                                                    </div>&nbsp;&nbsp;
+                                                                    <% if((i+1)%5==0 && i!=skillsArr.length-1){ %>
+                                                            </div>
+                                                            <div class="row" style="margin-top:10px;">
+                                                                <% } %>
+                                                                    <% } %>
+                                                            </div>
+                                                            <% } %>
+                                                                <% if(data.certifications != "0"){%>
+                                                                    <div class="row" style="margin-top:10px;">
+                                                                        <div class="col-12 " style="background-color: #0096dd; color: white; text-transform: uppercase;">
+                                                                            <b>Certifications</b>
+                                                                        </div>
+                                                                    </div>
+                                                                    <ul style="font-size: 0.83em; margin-top: 10px;">
+                                                                        <% var certifiArr=data.certifications.split(","); %>
+                                                                            <% for (var i=0; i < certifiArr.length; i++) { %>
+                                                                                <li style="font-size: 1.2em;">
+                                                                                    <%= certifiArr[i] %>
+                                                                                </li>
+                                                                                <% } %>
+                                                                    </ul>
+                                                                    <% } %>
+                                                                        <% if(data.projects != "0"){%>
+                                                                            <div class="row" style="margin-top:10px;">
+                                                                                <div class="col-12 " style="background-color: #0096dd; color: white; text-transform: uppercase;">
+                                                                                    <b>PROJECTS</b>
+                                                                                </div>
+                                                                            </div>
+                                                                            <% var proArr=data.projects.split(","); %>
+                                                                                <% for (var i=0; i < proArr.length; i++) { %>
+                                                                                    <div class="row" style="margin-top:10px;">
+                                                                                        <div class="col" align="left" style="background-color:#eeeeeb ; border-radius: 10px;  font-size: 1.0em; padding-bottom: 3px;">
+                                                                                            <%= proArr[i] %>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <% }} %>
+                                                                                        <% if(data.achievements != "empty"){%>
+                                                                                            <div class="row" style="margin-top:10px;">
+                                                                                                <div class="col-12 " style="background-color: #0096dd; color: white; text-transform: uppercase;">
+                                                                                                    <b>Achievements &nbsp;&nbsp;/ Awards</b>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <ul style="font-size: 0.83em; margin-top: 10px;">
+                                                                                                <% var achiArr=data.achievements.split(","); %>
+                                                                                                    <% for (var i=0; i < achiArr.length; i++) { %>
+                                                                                                        <li style="font-size: 1.2em;">
+                                                                                                            <%= achiArr[i] %>
+                                                                                                        </li>
+                                                                                                        <% } %>
+                                                                                            </ul>
+                                                                                            <% } %>
+
+                                                                                                <div class="row" style="margin-top:10px;">
+                                                                                                    <div class="col-12 " style="background-color: #0096dd; color: white; text-transform: uppercase;">
+                                                                                                        <b>PERSONAL&nbsp;&nbsp; DETAILS</b>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="row">
+                                                                                                    <div class="col-4"><b>Date of Birth : </b>
+                                                                                                        <%= data.dob%><br/><b>Gender : </b>
+                                                                                                            <%= data.gender%>
+                                                                                                    </div>
+                                                                                                    <div class="col-8"><b>Phone No : </b>
+                                                                                                        <%= data.phone%><br/><b>Email : </b>
+                                                                                                            <%= data.email%>
+                                                                                                    </div>
+                                                                                                    <div class="col-12"><b>Current Address : </b>
+                                                                                                        <%= data.address%>
+                                                                                                    </div>
+                                                                                                </div>
+        </div>
 
 
 
-    <!-- 
+        <!-- 
     <div>
         <div id="resume" class="rela-block page container-fluid">
             <div class="rela-block top-bar">
@@ -630,64 +645,64 @@
             </div>
         </div>
     </div> -->
-    <div style="position: fixed; right: 20px; bottom: 20px;">
-        <button type="button" class="btn btn-primary" style="border-radius: 20px;" onclick="Convert_HTML_To_PDF();">&nbsp;&nbsp;<i class="fa fa-download"></i> Download&nbsp;&nbsp;</button>
-    </div>
-    <script>
-        // setTimeout(() => {
-        //     Convert_HTML_To_PDF()
-        // }, 3000)
+        <div style="position: fixed; right: 20px; bottom: 20px;">
+            <button type="button" class="btn btn-primary" style="border-radius: 20px;" onclick="Convert_HTML_To_PDF();">&nbsp;&nbsp;<i class="fa fa-download"></i> Download&nbsp;&nbsp;</button>
+        </div>
+        <script>
+            // setTimeout(() => {
+            //     Convert_HTML_To_PDF()
+            // }, 3000)
 
-        // function downloadResume() {
-        //     let resume = document.getElementById('resume')
-        //         // console.log(resume)
-        //         // html2canvas(resume).then(canvas => {
+            // function downloadResume() {
+            //     let resume = document.getElementById('resume')
+            //         // console.log(resume)
+            //         // html2canvas(resume).then(canvas => {
 
-        //     //  const image = canvas.toDataURL("image/png");
-        //     //  const link = document.createElement('a');
-        //     //  link.download = 'myImage.png';
-        //     //  link.href = image;
-        //     //  document.body.appendChild(link);
-        //     //   link.click();
-        //     //   document.body.removeChild(link);
-
-
+            //     //  const image = canvas.toDataURL("image/png");
+            //     //  const link = document.createElement('a');
+            //     //  link.download = 'myImage.png';
+            //     //  link.href = image;
+            //     //  document.body.appendChild(link);
+            //     //   link.click();
+            //     //   document.body.removeChild(link);
 
 
-        //     //     html2canvas(resume).then(canvas => {  
-        //     //       var imgData = canvas.toDataURL("image/png");
-        //     // var pdf = new jsPDF();   
-        //     // pdf.addImage(canvas.toDataURL("image/png"), 'PNG', 0, 0, canvas.width, canvas.height)
-        //     // pdf.save('myDocument.pdf');
-        //     // });
 
-        //     html2canvas(resume).then((canvas) => {
-        //         const pdf = new jsPDF('p', 'mm', 'a4');
-        //         const imgData = canvas.toDataURL("image/png");
-        //         const imgProps = pdf.getImageProperties(imgData);
-        //         const pdfWidth = pdf.internal.pagesize.getWidth();
-        //         const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-        //         pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-        //         pdf.save(resume.pdf);
 
-        //     })
+            //     //     html2canvas(resume).then(canvas => {  
+            //     //       var imgData = canvas.toDataURL("image/png");
+            //     // var pdf = new jsPDF();   
+            //     // pdf.addImage(canvas.toDataURL("image/png"), 'PNG', 0, 0, canvas.width, canvas.height)
+            //     // pdf.save('myDocument.pdf');
+            //     // });
 
-        // }
-        window.jsPDF = window.jspdf.jsPDF;
+            //     html2canvas(resume).then((canvas) => {
+            //         const pdf = new jsPDF('p', 'mm', 'a4');
+            //         const imgData = canvas.toDataURL("image/png");
+            //         const imgProps = pdf.getImageProperties(imgData);
+            //         const pdfWidth = pdf.internal.pagesize.getWidth();
+            //         const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+            //         pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+            //         pdf.save(resume.pdf);
 
-        function Convert_HTML_To_PDF() {
-            var width = document.getElementById('resume').clientWidth;
-            var height = document.getElementById('resume').clientHeight;
-            var name = (document.getElementById("username").innerHTML).trim();
-            var doc = new jsPDF('p', 'pt', [width, height]);
-            var pageCount = doc.internal.getNumberOfPages();
-            var elementHTML = document.querySelector("#resume");
-            doc.html(elementHTML, {
-                callback: function(doc) {
-                    doc.deletePage(pageCount + 1);
-                    doc.save(name + '_resume.pdf');
-                }
-            });
-        }
-    </script>
+            //     })
+
+            // }
+            window.jsPDF = window.jspdf.jsPDF;
+
+            function Convert_HTML_To_PDF() {
+                var width = document.getElementById('resume').clientWidth;
+                var height = document.getElementById('resume').clientHeight;
+                var name = (document.getElementById("username").innerHTML).trim();
+                var doc = new jsPDF('p', 'pt', [width, height]);
+                var pageCount = doc.internal.getNumberOfPages();
+                var elementHTML = document.querySelector("#resume");
+                doc.html(elementHTML, {
+                    callback: function(doc) {
+                        doc.deletePage(pageCount + 1);
+                        doc.save(name + '_resume.pdf');
+                    }
+                });
+            }
+        </script>
 </body>
