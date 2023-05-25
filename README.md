@@ -1,2 +1,2 @@
 # JNTUK_E_Placements
-https://fair-tan-elk-gown.cyclic.app/
+https://easy-erin-anemone-sock.cyclic.app/
